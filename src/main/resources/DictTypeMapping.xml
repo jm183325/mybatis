@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.DictTypeDao">
+<select id="dictTypeSelect" resultType="di">
+select * from dict_type where type=#{type}
+</select>
+<!--  
+<select id="dictTypeSelect" resultType="di" databaseId="mysql">
+select type from dict_type where type=#{type}
+</select>
+-->
+<insert id="dictTypeInsert" useGeneratedKeys="true" keyProperty="type">
+	insert into dict_type (type,is_sql,create_time,create_by,update_time,version) values(#{type},#{isSql},now(),#{createBy},now(),#{version})
+</insert>
+<select id="dictTypeSelectParam1" resultType="di">
+select * from dict_type where type=#{param1} and is_sql=#{1}
+</select>
+<select id="dictTypeSelectParam" resultType="di">
+select * from dict_type where type=#{type} and is_sql=#{isSql}
+</select>
+
+<select id="dictTypeSelectMap" resultType="di">
+select * from ${dictType} where type=#{type} 
+</select>
+<select id="dictTypeSelectList" resultType="di">
+select * from dict_type where type=#{list[0]}
+</select>
+<select id="dictTypeSelectArray" resultType="di">
+select * from dict_type where type=#{array[0]}
+</select>
+</mapper>
